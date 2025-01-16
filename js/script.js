@@ -2,12 +2,10 @@
 const LanguageHandler = {
     // Получаем язык из URL
     getLanguageFromUrl() {
-        const path = window.location.pathname.split('/').filter(Boolean); // Получаем сегменты пути
-        const lang = path[path.length - 1]?.toUpperCase(); // Последний сегмент в верхнем регистре
-        return lang === 'UA' || lang === 'EN' ? lang : 'EN'; // По умолчанию 'EN'
+        const hash = window.location.hash.substring(1);
+        return hash === 'ua' || hash === 'en' ? hash : 'en';
     },
 
-    // Обновляем URL и контент
     setLanguage(lang) {
         window.location.hash = lang;
         document.getElementById('current-language').textContent = lang.toUpperCase();
@@ -23,7 +21,6 @@ const LanguageHandler = {
         this.updateLanguageVisibility(lang);
     },
 
-    // Обновляем видимость языков в селекторе
     updateLanguageVisibility(currentLang) {
         const allLang = document.querySelectorAll('.hidden-lang');
         allLang.forEach(lang => {
@@ -35,7 +32,6 @@ const LanguageHandler = {
         });
     },
 
-    // Инициализация обработчиков
     init() {
         const currentLang = this.getLanguageFromUrl();
         this.setLanguage(currentLang);
@@ -46,7 +42,6 @@ const LanguageHandler = {
             this.setLanguage(newLang);
         });
 
-        // Обработчик открытия/закрытия селектора языка
         const languageSelector = document.getElementById('language-selector');
         languageSelector.addEventListener('click', (event) => {
             event.stopPropagation();
@@ -64,13 +59,11 @@ const LanguageHandler = {
             });
         });
 
-        // Закрытие селектора при клике вне его
         document.addEventListener('click', () => {
             const languageSelector = document.getElementById('language-selector');
             languageSelector.classList.remove('open');
         });
 
-        // Обработчик кликов по кнопкам языка
         document.querySelectorAll('.translate').forEach(button => {
             button.addEventListener('click', (event) => {
                 event.stopPropagation();
