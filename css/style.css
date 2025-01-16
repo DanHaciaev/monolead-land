@@ -929,8 +929,10 @@ footer {
         display: none;
     }
 
-    .language-selector {
-        display: none;
+    .right_header{
+        display: flex;
+        align-items: center;
+        gap: 20px;
     }
 
     .photo_back {
@@ -1074,7 +1076,7 @@ footer {
     background-color: black;
     top: 0;
     margin: 0;
-    padding: 20px 20px 60px 20px;
+    padding: 56px 40px;
     position: relative;
     width: 100%;
 }
@@ -1102,87 +1104,6 @@ footer {
     font-size: 16px;
     font-family: 'Geometria';
     font-weight: bold;
-}
-
-.selector-modal {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    width: auto;
-    margin-top: 40px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: height 0.3s ease;
-    height: auto;
-    overflow: visible;
-}
-
-.selector-modal img {
-    width: 36px;
-    margin-right: 8px;
-}
-
-.selector-modal .arrow-modal {
-    transition: transform 0.3s ease;
-}
-
-.selector-modal .languages-modal {
-    display: flex;
-    align-items: center;
-    position: relative;
-    z-index: 9999;
-    font-family: 'Geometria';
-}
-
-.selector-modal .language-modal {
-    font-size: 16px;
-    color: white;
-    line-height: 40px;
-}
-
-.selector-modal .hidden-lang-modal {
-    font-size: 16px;
-    color: white;
-    cursor: pointer;
-    line-height: 40px;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.selector-modal.open .languages-modal {
-    flex-direction: column;
-}
-
-.selector-modal.open .hidden-lang-modal {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-}
-
-.selector-modal.open .arrow-modal {
-    transform: rotate(180deg);
-}
-
-.translate {
-    border: none;
-    background-color: transparent;
-    color: white;
-    padding: 0;
-    margin: 0;
-    font-size: 16px;
-    font-family: 'Geometria';
-}
-
-@media screen and (max-width: 881px) {
-    #language-selector {
-        display: none;
-    }
 }
 
 @media screen and (max-width: 715px) {

@@ -55,38 +55,17 @@ document.querySelectorAll('.translate').forEach(button => {
 
 function checkWindowSize() {
     const windowWidth = window.innerWidth;
-    const header = document.querySelector('header'); // Получаем header
-    const existingButton = document.querySelector('.mobile-button');
+    const mobileButton = document.querySelector('.mobile-button');
     
     if (windowWidth <= 881) {
-        if (!existingButton) {
-            // Создаем элементы
-            const buttonContainer = document.createElement('div');
-            buttonContainer.className = 'mobile-button';
-            
-            const button = document.createElement('button');
-            button.className = 'mobile-menu-button';
-            
-            const img = document.createElement('img');
-            img.src = '../img/menu.png'; // Укажите путь к вашей картинке
-            img.alt = 'Menu';
-            
-            // Собираем структуру
-            button.appendChild(img);
-            buttonContainer.appendChild(button);
-            
-            // Добавляем в header
-            header.appendChild(buttonContainer);
-            
-            // Добавляем обработчик для открытия модального окна
-            button.addEventListener('click', function() {
-                openModal();  // Вызываем функцию открытия модального окна
-            });
+        // Показываем кнопку для мобильных
+        if (mobileButton) {
+            mobileButton.style.display = 'block';
         }
     } else {
-        // Удаляем кнопку если ширина больше 881px
-        if (existingButton) {
-            existingButton.remove();
+        // Скрываем кнопку на больших экранах
+        if (mobileButton) {
+            mobileButton.style.display = 'none';
         }
     }
 }
@@ -106,8 +85,17 @@ if (closeModalButton) {
     });
 }
 
+// Обработчик клика на кнопку меню (открытие модального окна)
+const mobileMenuButton = document.querySelector('.mobile-menu-button');
+if (mobileMenuButton) {
+    mobileMenuButton.addEventListener('click', function() {
+        openModal();  // Вызываем функцию открытия модального окна
+    });
+}
+
 // Проверяем размер при загрузке страницы
 document.addEventListener('DOMContentLoaded', checkWindowSize);
 
 // Проверяем размер при изменении размера окна
 window.addEventListener('resize', checkWindowSize);
+
