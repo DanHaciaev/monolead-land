@@ -1,74 +1,106 @@
-// Открытие/закрытие меню выбора языка
-document.getElementById('language-selector').addEventListener('click', function(event) {
-    event.stopPropagation(); // Предотвращаем всплытие события
-    this.classList.toggle('open'); // Переключаем класс для открытия/закрытия меню
-    
-    const currentLanguages = document.getElementById('current-language');
-    const allLang = document.querySelectorAll('.hidden-lang');
-    
-    // Обновляем видимость языков
-    allLang.forEach(lang => {
-        if (lang.querySelector('.translate').textContent === currentLanguages.textContent) {
-            lang.style.display = 'none'; // Скрыть текущий выбранный язык
-        } else {
-            lang.style.display = 'block'; // Показать другие языки
-        }
-    });
-});
+// Основной объект для работы с языками
+const LanguageHandler = {
+    // Получаем язык из URL
+    getLanguageFromUrl() {
+        const path = window.location.pathname.split('/').filter(Boolean); // Получаем сегменты пути
+        const lang = path[path.length - 1]?.toUpperCase(); // Последний сегмент в верхнем регистре
+        return lang === 'UA' || lang === 'EN' ? lang : 'EN'; // По умолчанию 'EN'
+    },
 
-// Закрытие меню при клике вне
-document.addEventListener('click', function(event) {
-    const languageSelector = document.getElementById('language-selector');
-    if (!languageSelector.contains(event.target)) {
-        languageSelector.classList.remove('open'); // Закрытие меню, если клик вне
-    }
-});
-
-// Обработчик для кнопок выбора языка
-document.querySelectorAll('.translate').forEach(button => {
-    button.addEventListener('click', function(event) {
-        event.stopPropagation(); // Останавливаем всплытие события
+    // Обновляем URL и контент
+    setLanguage(lang) {
+        window.location.hash = lang;
+        document.getElementById('current-language').textContent = lang.toUpperCase();
         
-        const currentLanguages = document.getElementById('current-language');
-        const languageSelector = document.getElementById('language-selector');
-        
-        // Обновляем текст текущего языка
-        currentLanguages.textContent = this.textContent; // Обновляем текст в #current-language
-        
-        // Закрытие меню выбора языка
-        languageSelector.classList.remove('open');
-        
-        // Обновляем видимость языков
-        const allLang = document.querySelectorAll('.hidden-lang');
-        allLang.forEach(lang => {
-            if (lang.querySelector('.translate').textContent === currentLanguages.textContent) {
-                lang.style.display = 'none'; // Скрыть текущий выбранный язык
-            } else {
-                lang.style.display = 'block'; // Показать другие языки
+        const elements = document.getElementsByClassName('lang');
+        Array.from(elements).forEach(element => {
+            const key = element.getAttribute('key');
+            if (key && arrLang[lang] && arrLang[lang][key]) {
+                element.textContent = arrLang[lang][key];
             }
         });
 
-        // Получаем выбранный язык
-        var selectedLang = this.getAttribute('id'); // 'en' или 'ua'
+        this.updateLanguageVisibility(lang);
+    },
 
-        // Обновляем язык в URL
-        var currentUrl = window.location.href;
-        var newUrl = currentUrl.replace(/\/(en|ua)/, `/${selectedLang}`);
+    // Обновляем видимость языков в селекторе
+    updateLanguageVisibility(currentLang) {
+        const allLang = document.querySelectorAll('.hidden-lang');
+        allLang.forEach(lang => {
+            if (lang.querySelector('.translate').textContent === currentLang.toUpperCase()) {
+                lang.style.display = 'none';
+            } else {
+                lang.style.display = 'block';
+            }
+        });
+    },
 
-        // Если язык не присутствует в URL, добавляем его
-        if (!/\/(en|ua)/.test(currentUrl)) {
-            newUrl = window.location.origin + (currentUrl.endsWith('/') ? '' : '/') + selectedLang + currentUrl.split('/').slice(-1);
-        }
+    // Инициализация обработчиков
+    init() {
+        const currentLang = this.getLanguageFromUrl();
+        this.setLanguage(currentLang);
 
-        // Изменяем URL в адресной строке без перезагрузки страницы
-        history.pushState(null, '', newUrl);
+        // Обработчик изменения хэша в URL
+        window.addEventListener('hashchange', () => {
+            const newLang = this.getLanguageFromUrl();
+            this.setLanguage(newLang);
+        });
 
-        // Сохраняем язык в localStorage
-        localStorage.setItem('language', selectedLang);
-    });
+        // Обработчик открытия/закрытия селектора языка
+        const languageSelector = document.getElementById('language-selector');
+        languageSelector.addEventListener('click', (event) => {
+            event.stopPropagation();
+            languageSelector.classList.toggle('open');
+            
+            const currentLanguages = document.getElementById('current-language');
+            const allLang = document.querySelectorAll('.hidden-lang');
+            
+            allLang.forEach(lang => {
+                if (lang.querySelector('.translate').textContent === currentLanguages.textContent) {
+                    lang.style.display = 'none';
+                } else {
+                    lang.style.display = 'block';
+                }
+            });
+        });
+
+        // Закрытие селектора при клике вне его
+        document.addEventListener('click', () => {
+            const languageSelector = document.getElementById('language-selector');
+            languageSelector.classList.remove('open');
+        });
+
+        // Обработчик кликов по кнопкам языка
+        document.querySelectorAll('.translate').forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.stopPropagation();
+                
+                const lang = button.getAttribute('id');
+                this.setLanguage(lang);
+                
+                const currentLanguages = document.getElementById('current-language');
+                const languageSelector = document.getElementById('language-selector');
+                
+                currentLanguages.textContent = button.textContent;
+                languageSelector.classList.remove('open');
+                
+                const allLang = document.querySelectorAll('.hidden-lang');
+                allLang.forEach(lang => {
+                    if (lang.querySelector('.translate').textContent === currentLanguages.textContent) {
+                        lang.style.display = 'none';
+                    } else {
+                        lang.style.display = 'block';
+                    }
+                });
+            });
+        });
+    }
+};
+
+// Инициализация после загрузки DOM
+document.addEventListener('DOMContentLoaded', () => {
+    LanguageHandler.init();
 });
-
-
 
 
 function checkWindowSize() {
