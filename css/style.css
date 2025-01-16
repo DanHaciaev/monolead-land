@@ -827,6 +827,22 @@ footer {
         display: none;
     }
 
+    .button_contact {
+        border: none;
+        background: linear-gradient(76deg,
+                #644ed3 0%,
+                #90309d 100%);
+        padding: 16px;
+        border-radius: 32px;
+        color: white;
+        font-size: 16px;
+        font-family: 'Geometria';
+        font-weight: 700;
+        transition: transform 0.3s ease-in-out;
+        transform-origin: center;
+        /* Устанавливаем точку трансформации слева */
+    }
+
     .name {
         display: flex;
         justify-content: center;
