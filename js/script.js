@@ -47,6 +47,24 @@ document.querySelectorAll('.translate').forEach(button => {
                 lang.style.display = 'block'; // Показать другие языки
             }
         });
+
+        // Получаем выбранный язык
+        var selectedLang = this.getAttribute('id'); // 'en' или 'ua'
+
+        // Обновляем язык в URL
+        var currentUrl = window.location.href;
+        var newUrl = currentUrl.replace(/\/(en|ua)/, `/${selectedLang}`);
+
+        // Если язык не присутствует в URL, добавляем его
+        if (!/\/(en|ua)/.test(currentUrl)) {
+            newUrl = window.location.origin + (currentUrl.endsWith('/') ? '' : '/') + selectedLang + currentUrl.split('/').slice(-1);
+        }
+
+        // Изменяем URL в адресной строке без перезагрузки страницы
+        history.pushState(null, '', newUrl);
+
+        // Сохраняем язык в localStorage
+        localStorage.setItem('language', selectedLang);
     });
 });
 
