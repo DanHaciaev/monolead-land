@@ -1,0 +1,1192 @@
+@font-face {
+    font-family: Geometria-Bold;
+    src: url('../fonts/Geometria-Bold.ttf');
+}
+
+@font-face {
+    font-family: Geometria-Heavy;
+    src: url('../fonts/Geometria-Heavy.ttf');
+}
+
+@font-face {
+    font-family: Geometria;
+    src: url('../fonts/Geometria.ttf');
+}
+
+@font-face {
+    font-family: Lexend-Medium;
+    src: url('../fonts/Lexend-Medium.ttf');
+}
+
+@font-face {
+    font-family: Lexend-Regular;
+    src: url('../fonts/Lexend-Regular.ttf');
+}
+
+@font-face {
+    font-family: Lexend-SemiBold;
+    src: url('../fonts/Lexend-SemiBold.ttf');
+}
+
+body {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    background-color: black;
+    letter-spacing: -1.7%;
+}
+
+p,
+li {
+    padding: 0;
+    margin: 0;
+    color: white;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 70px 0;
+}
+
+
+.logo {
+    width: fit-content;
+}
+
+.logo img {
+    width: 64px;
+}
+
+.points nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    gap: 56px;
+}
+
+.points nav ul li {
+    text-transform: uppercase;
+    font-size: 16px;
+    font-family: 'Geometria';
+    font-weight: bold;
+}
+
+.menu img {
+    width: 24px;
+    display: none;
+}
+
+.language-selector {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    /* центрируем элементы по вертикали */
+    width: auto;
+    /* Ширина не фиксирована, зависит от содержимого */
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: height 0.3s ease;
+    height: auto;
+    overflow: visible;
+}
+
+.language-selector img {
+    width: 36px;
+    margin-right: 8px;
+    /* Отступ от стрелки до текста */
+}
+
+.language-selector .arrow {
+    transition: transform 0.3s ease;
+}
+
+.language-selector .languages {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 9999;
+    font-family: 'Geometria';
+}
+
+.language-selector .language {
+    font-size: 16px;
+    color: white;
+    line-height: 40px;
+}
+
+.language-selector .hidden-lang {
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    line-height: 40px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.language-selector.open .languages {
+    flex-direction: column;
+}
+
+.language-selector.open .hidden-lang {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.language-selector.open .arrow {
+    transform: rotate(180deg);
+}
+
+.translate {
+    border: none;
+    background-color: transparent;
+    color: white;
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    font-family: 'Geometria';
+}
+
+.under_header {
+    position: relative;
+}
+
+.box {
+    background: radial-gradient(circle at center,
+            rgba(89, 0, 255, .1) 0%,
+            rgba(79, 21, 212, 0.1) 30%,
+            rgba(18, 5, 38, 0.1) 60%,
+            rgba(1, 1, 2, 0.1) 100%);
+    width: 850px;
+    height: 850px;
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    right: 0;
+    z-index: 1;
+}
+
+.blocks_top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+    position: relative;
+    margin: 200px 40px 200px 150px;
+    z-index: 2;
+}
+
+.left_part,
+.right_part {
+    position: relative;
+    z-index: 2;
+}
+
+.right_part {
+    width: 450px;
+}
+
+.right_part img {
+    width: 90%;
+}
+
+.moving-image {
+    position: absolute;
+    top: -230px;
+    left: 0;
+    animation: moveDiagonally ease-in-out 16s infinite;
+    z-index: 1;
+}
+
+@keyframes moveDiagonally {
+    0% {
+        top: -230px;
+        left: 0;
+    }
+
+    25% {
+        top: -300px;
+        left: -100px;
+    }
+
+    50% {
+        top: -250px;
+        left: -100px;
+    }
+
+    75% {
+        top: -190px;
+        left: -150px;
+    }
+
+    100% {
+        top: -230px;
+        left: 0;
+    }
+}
+
+.name {
+    transform: translateY(-50px);
+}
+
+.name p:first-of-type {
+    font-family: "Geometria-Bold";
+    font-size: 96px;
+    background: linear-gradient(67deg,
+            #d2e0ed 0%,
+            #dfc8e7 11%,
+            #cbcdfc 46%,
+            #c3adcb 64%,
+            #9699b5 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.name p:last-of-type {
+    font-family: "Geometria-Bold";
+    font-size: 36px;
+    background: linear-gradient(67deg,
+            #d2e0ed 0%,
+            #bfc8e7 11%,
+            #cbcdfc 46%,
+            #c3adcb 64%,
+            #9699b5 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.button_contact {
+    border: none;
+    background: linear-gradient(76deg,
+            #644ed3 0%,
+            #90309d 100%);
+    padding: 16px;
+    border-radius: 32px;
+    color: white;
+    font-size: 16px;
+    font-family: 'Geometria';
+    font-weight: 700;
+    transition: transform 0.3s ease-in-out;
+    transform-origin: left center;
+    /* Устанавливаем точку трансформации слева */
+}
+
+.button_contact {
+    transition: transform .8s ease-in-out, box-shadow 0.3s ease-in-out;
+    /* Плавные переходы для масштаба и тени */
+}
+
+.button_contact:hover {
+    transform: scale3d(1.3, 1.3, 1.3);
+    box-shadow: 0 0 30px rgba(126, 0, 252, 0.3);
+    /* Добавляем тень с прозрачностью */
+}
+
+
+
+.blocks {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1100px;
+    width: 100%;
+    margin: 300px auto 250px;
+    padding-bottom: 80px;
+}
+
+.left_blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.middle_blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    transform: translateY(100px);
+}
+
+.right_block {
+    display: flex;
+    flex-direction: column;
+    transform: translateY(220px);
+    gap: 40px;
+}
+
+.block_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+    align-items: center;
+    border-radius: 16px;
+    background-color: #090116;
+    width: 300px;
+    padding: 15px;
+}
+
+.block_item img {
+    width: 80px;
+}
+
+.block_item div {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.block_item div p:first-of-type {
+    font-family: 'Geometria-Bold';
+    font-size: 20px;
+}
+
+.block_item div p:last-of-type {
+    font-family: 'Geometria';
+    font-size: 18px;
+}
+
+.table_title {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.table {
+    position: relative;
+    z-index: 2;
+    /* Контент выше фоновых изображений */
+    padding-bottom: 200px;
+    text-align: center;
+}
+
+.table p {
+    font-family: 'Geometria-Heavy';
+    font-size: 48px;
+}
+
+.table_countries {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 80px auto 0;
+    max-width: 1200px;
+    padding: 88px 40px;
+    border-radius: 24px;
+    background-color: black;
+}
+
+.table_item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.table_item img {
+    width: 55px;
+}
+
+.table_item p {
+    font-size: 24px;
+}
+
+.left_table,
+.middle_table,
+.right_table {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+.photo_back {
+    display: none;
+    background-image: url('../img/top_line.png');
+    background-size: cover;
+    /* Масштабирует изображение, чтобы заполнить весь блок */
+    background-repeat: no-repeat;
+    /* Отключает повтор изображения */
+    background-position: center;
+    /* Центрирует изображение */
+    width: 100vw;
+    /* Устанавливает ширину в 100% от ширины окна браузера */
+    height: 60vh;
+    /* Устанавливает высоту в 100% от высоты окна браузера */
+}
+
+
+.countries {
+    position: relative;
+    overflow: hidden;
+    /* Чтобы фоновые изображения не выходили за пределы секции */
+}
+
+.countries .back_photos {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+    /* Фоновые изображения должны быть под контентом */
+    pointer-events: none;
+    /* Чтобы фоновая графика не мешала кликам */
+}
+
+.countries .back_photos img {
+    width: 40%;
+    /* Устанавливаем начальный размер для фоновых изображений */
+    max-width: 600px;
+    /* Ограничиваем максимальный размер */
+    object-fit: contain;
+    /* Сохраняем пропорции */
+}
+
+.countries .back_photos img:first-child {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.countries .back_photos img:nth-child(2) {
+    position: absolute;
+    right: 0;
+    top: 5%;
+}
+
+.bottom_line{
+    display: none;
+}
+
+
+
+.contacts {
+    position: relative;
+    z-index: 9999;
+    top: 80px;
+    margin: 0 auto;
+    padding-bottom: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 64px;
+    max-width: 840px;
+}
+
+.contacts_top {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contacts_top p:first-of-type {
+    font-family: 'Geometria-Bold';
+    font-size: 64px;
+}
+
+.contacts_top p:last-of-type {
+    font-family: 'Geometria';
+    font-size: 32px;
+}
+
+.buttons_bottom {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.buttons_bottom button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 27px;
+    background: linear-gradient(72deg,
+            #644ed3 0%,
+            #90309d 100%);
+}
+
+.truncate-button img {
+    width: 20px;
+    padding: 8px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.buttons_bottom button p {
+    font-family: 'Geometria-Bold';
+    font-size: 17px;
+}
+
+
+.telegram-background {
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.email-background {
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.telegram {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+}
+
+.email {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+}
+
+.telegram-hover:hover .telegram{
+    animation: moveDiagonal 2.5s ease-in-out;
+}
+
+
+@keyframes moveDiagonal {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    25% {
+        transform: translate(20px, -20px);
+    }
+
+    50% {
+        transform: translate(-20px, 20px);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+button:hover .email {
+    animation: fallDown 1.5s ease-in-out;
+}
+
+@keyframes fallDown {
+    0% {
+        transform: rotate(0deg) translate(0, 0);
+    }
+
+    25% {
+        transform: rotate(45deg) translate(5px, 5px);
+        /* Поворот и движение вниз */
+    }
+
+    40% {
+        transform: translate(0, 25px)
+    }
+
+    100% {
+        transform: rotate(0deg) translate(0, 0);
+        /* Возвращаем в исходное положение */
+    }
+}
+
+footer {
+    margin: 150px 0 100px;
+}
+
+.left_align {
+    color: white;
+    text-transform: uppercase;
+    font-family: 'Geometria-Heavy';
+    font-size: 118px;
+}
+
+.right_align {
+    color: white;
+    text-transform: uppercase;
+    font-family: 'Geometria-Heavy';
+    font-size: 118px;
+    text-align: end;
+}
+
+.truncate-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 10px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
+
+.truncate-button .lang {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 115px;
+    transition: max-width 0.5s ease-in-out;
+}
+
+.truncate-button:hover .lang {
+    max-width: 400px;
+    white-space: nowrap;
+}
+
+@media screen and (max-width: 1370px) {
+    .blocks_top {
+        margin: 200px 40px 200px 90px;
+    }
+
+    .name p:first-of-type {
+        font-size: 90px;
+    }
+
+    .name p:last-of-type {
+        font-size: 30px;
+    }
+
+    .box {
+        width: 750px;
+        height: 750px;
+        top: 10px;
+    }
+
+    .table {
+        padding-right: 50px;
+        padding-left: 50px;
+    }
+}
+
+@media screen and (max-width: 1290px) {
+    .name p:first-of-type {
+        font-size: 80px;
+    }
+
+    .name p:last-of-type {
+        font-size: 26px;
+    }
+}
+
+@media screen and (max-width: 1290px) {
+    .blocks_top {
+        margin: 200px 0px 200px 40px;
+    }
+}
+
+@media screen and (max-width: 1140px) {
+    .block_item {
+        width: 280px;
+    }
+}
+
+@media screen and (max-width: 1110px) {
+
+    .left_align,
+    .right_align {
+        font-size: 100px;
+    }
+
+    .right_part {
+        width: 400px;
+    }
+
+    .right_part img {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 1080px) {
+    .blocks_top {
+        margin: 200px 10px 200px 40px;
+    }
+
+    .right_part {
+        width: 350px;
+    }
+
+    .right_part img {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .countries .back_photos img:first-child {
+        position: absolute;
+        left: 0;
+        top: 5%;
+    }
+
+    .countries .back_photos img:nth-child(2) {
+        position: absolute;
+        right: 0%;
+        top: 15%;
+    }
+
+    .table_countries{
+        margin: 60px auto 0;
+    }
+
+    .table p{
+        font-size: 40px;
+    }
+
+    .table_item p{
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 1030px) {
+    .blocks_top {
+        margin: 200px 10px 200px 40px;
+    }
+
+    .right_part {
+        width: 300px;
+    }
+
+    .right_part img {
+        width: 100%;
+    }
+
+    .name p:first-of-type {
+        font-size: 70px;
+    }
+
+    .name p:last-of-type {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 920px) {
+    .right_part {
+        width: 250px;
+    }
+
+    .right_part img {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .blocks {
+        max-width: 768px;
+        margin: 300px auto 250px auto;
+    }
+
+    .block_item {
+        width: 200px;
+    }
+}
+
+@media screen and (max-width: 964px) {
+
+    .left_align,
+    .right_align {
+        font-size: 80px;
+    }
+}
+
+
+
+@media screen and (max-width: 881px) {
+    header {
+        padding: 16px 20px 0;
+    }
+
+    .box {
+        display: none;
+    }
+
+    .name {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .right_part {
+        top: -140px;
+        left: 100px;
+    }
+
+    .blocks_top {
+        margin: 100px 10px 100px 10px;
+        flex-direction: column;
+    }
+
+    .left_part {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 350px;
+        flex-direction: column;
+    }
+
+    .button_contact {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .blocks {
+        flex-direction: column;
+        max-width: 100%;
+        width: 100%;
+        gap: 40px;
+        padding-bottom: 50px;
+        margin: 0;
+    }
+
+    .table_countries {
+        flex-direction: column;
+        gap: 80px;
+        background: linear-gradient(22deg,
+                #331947 30%,
+                #513499 84%);
+    }
+
+    .left_table,
+    .middle_table,
+    .right_table {
+        align-items: center;
+
+    }
+
+    .middle_blocks,
+    .right_block {
+        transform: translateY(0);
+    }
+
+    .block_item {
+        margin: 0;
+        width: auto;
+    }
+
+    .mobile-button {
+        display: block;
+    }
+
+    .mobile-menu-button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+    }
+
+    .mobile-menu-button img {
+        width: 24px;
+        height: 24px;
+        display: block;
+    }
+
+    .points {
+        display: none;
+    }
+
+    .language-selector {
+        display: none;
+    }
+
+    .photo_back {
+        display: block;
+        background-image: url('../img/top_line.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 100%;
+        height: 300px;
+    }
+
+    .table{
+        margin-top: 50px;
+    }
+
+    .countries .back_photos img {
+        width: 100%;
+        max-width: 100%;
+        object-fit: contain;
+    }
+
+    .back_photos img:first-of-type {
+        display: none;
+    }
+
+    .back_photos img:nth-child(2) {
+        display: none;
+    }
+
+    .bottom_line{
+        display: block;
+    }
+
+    .contacts{
+        padding-bottom: 130px;
+    }
+
+    .buttons_bottom{
+        align-items: center;
+        gap: 72px;
+        flex-direction: column;
+    }
+
+    .contacts_top{
+        padding: 0 20px;
+    }
+
+    .contacts_top p:first-of-type {
+        font-size: 48px;
+    }
+
+    .contacts_top p:last-of-type {
+        font-size: 28px;
+    }
+    footer{
+        margin: 100px 0 50px;
+    }
+    .left_align, .right_align {
+        text-align: center;
+    }
+
+}
+
+@media screen and (max-width: 787px) {
+    .left_align, .right_align {
+        font-size: 70px;
+    }
+}
+
+@media screen and (max-width: 675px) {
+    .left_align, .right_align {
+        font-size: 60px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .left_align, .right_align {
+        font-size: 50px;
+    }
+}
+
+@media screen and (max-width: 490px) {
+    .left_align, .right_align {
+        font-size: 40px;
+    }
+}
+@media screen and (max-width: 490px) {
+    .left_align, .right_align {
+        font-size: 35px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .blocks{
+        padding-bottom: 0;
+    }
+    .table{
+        margin-top: 0;
+    }
+    .name p:first-of-type{
+        font-size: 48px;
+    }
+    .name p:last-of-type{
+        font-size: 20px;
+    }
+    .table p{
+        font-size: 28px;
+    }
+    .table_item p{
+        font-size: 24px;
+    }
+    .right_part{
+        width: 200px;
+        left: 70px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .contacts{
+        margin-top: -130px;
+    }
+}
+
+
+/* Стили для модального окна */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.modal-content {
+    background-color: black;
+    top: 0;
+    margin: 0;
+    padding: 20px 20px 60px 20px;
+    position: relative;
+    width: 100%;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.points1 nav ul {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    gap: 40px;
+}
+
+.points1 nav ul li {
+    text-transform: uppercase;
+    font-size: 16px;
+    font-family: 'Geometria';
+    font-weight: bold;
+}
+
+.selector-modal {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: auto;
+    margin-top: 40px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: height 0.3s ease;
+    height: auto;
+    overflow: visible;
+}
+
+.selector-modal img {
+    width: 36px;
+    margin-right: 8px;
+}
+
+.selector-modal .arrow-modal {
+    transition: transform 0.3s ease;
+}
+
+.selector-modal .languages-modal {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 9999;
+    font-family: 'Geometria';
+}
+
+.selector-modal .language-modal {
+    font-size: 16px;
+    color: white;
+    line-height: 40px;
+}
+
+.selector-modal .hidden-lang-modal {
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    line-height: 40px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.selector-modal.open .languages-modal {
+    flex-direction: column;
+}
+
+.selector-modal.open .hidden-lang-modal {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.selector-modal.open .arrow-modal {
+    transform: rotate(180deg);
+}
+
+.translate {
+    border: none;
+    background-color: transparent;
+    color: white;
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    font-family: 'Geometria';
+}
+
+@media screen and (max-width: 881px) {
+    #language-selector {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 715px) {
+    .photo_back {
+        background-image: url('../img/top_line.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 100%;
+        height: 300px;
+    }
+}
+
+@media screen and (max-width: 653px) {
+    .photo_back {
+        background-image: url('../img/top_line.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 100%;
+        height: 300px;
+    }
+}
