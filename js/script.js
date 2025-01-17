@@ -1,5 +1,5 @@
 const LanguageHandler = {
-    // Устанавливаем язык на основе текущего контента на странице
+    // Устанавливаем язык на основе выбранного языка
     setLanguage(lang) {
         // Обновляем текст текущего языка
         document.getElementById('current-language').textContent = lang.toUpperCase();
@@ -12,11 +12,11 @@ const LanguageHandler = {
     updateLanguageVisibility(currentLang) {
         const allLang = document.querySelectorAll('.hidden-lang');
         allLang.forEach(lang => {
-            // Прячем текущий выбранный язык
-            if (lang.querySelector('.translate').textContent === currentLang.toUpperCase()) {
-                lang.style.display = 'none';
+            const langText = lang.querySelector('a').textContent.toUpperCase(); // Получаем текст языка
+            if (langText === currentLang.toUpperCase()) {
+                lang.style.display = 'none'; // Прячем текущий язык
             } else {
-                lang.style.display = 'block';
+                lang.style.display = 'block'; // Показываем другие языки
             }
         });
     },
@@ -24,8 +24,11 @@ const LanguageHandler = {
     // Инициализация обработчиков
     init() {
         // Получаем текущий язык из URL (например, из имени файла)
-        const currentLang = window.location.pathname.split('/').pop().split('.')[0].toUpperCase();
-        this.setLanguage(currentLang || 'EN'); // Если язык не указан, по умолчанию ставим 'EN'
+        const path = window.location.pathname.split('/');
+        const currentLang = path[path.length - 2]; // Это будет язык (например, 'EN' или 'UA')
+
+        // Устанавливаем язык (по умолчанию 'EN' если не найден)
+        this.setLanguage(currentLang || 'EN');
 
         // Обработчик открытия/закрытия селектора языка
         const languageSelector = document.getElementById('language-selector');
@@ -45,9 +48,14 @@ const LanguageHandler = {
             button.addEventListener('click', (event) => {
                 event.stopPropagation();
 
-                // Смена языка и переход на соответствующую страницу
-                const lang = button.querySelector('a').getAttribute('href').split('.')[0].toUpperCase();
+                // Получаем язык, который был выбран (например, 'EN' или 'UA')
+                const lang = button.querySelector('a').textContent.toUpperCase();
+
+                // Смена языка
                 this.setLanguage(lang);
+
+                // Переход на соответствующую страницу
+                window.location.href = button.querySelector('a').getAttribute('href');
             });
         });
     }
@@ -57,8 +65,6 @@ const LanguageHandler = {
 document.addEventListener('DOMContentLoaded', () => {
     LanguageHandler.init();
 });
-
-
 
 function checkWindowSize() {
     const windowWidth = window.innerWidth;
