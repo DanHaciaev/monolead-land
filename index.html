@@ -1,25 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Redirect</title>
-        <script>
-        window.addEventListener('DOMContentLoaded', function() {
-            // Получаем текущий путь URL
-            const path = window.location.pathname.split('/').filter(Boolean);
-            
-            // Проверяем, есть ли в URL сегмент для языка (ua или en)
-            if (path.length > 0 && (path[0] === 'ua' || path[0] === 'en')) {
-                // Если есть, оставляем текущий путь, например /ua или /en
-                return;
-            } else {
-                // Если пути нет, по умолчанию делаем редирект на английскую версию
-                window.location.href = '/en/index.html';
-            }
-        });
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirect</title>
+    <script>
+        // Редирект на en.html
+        window.location.href = 'EN/index.html';
     </script>
-    </head>
-    <body>
-    </body>
+</head>
+<body>
+</body>
 </html>
