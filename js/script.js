@@ -1,30 +1,18 @@
 const LanguageHandler = {
-    // Получаем язык из URL
-    getLanguageFromUrl() {
-        const path = window.location.pathname.substring(1).toLowerCase(); // Убираем начальный слэш и переводим в нижний регистр
-        return path === 'ua' || path === 'en' ? path : 'en';
-    },
-
+    // Устанавливаем язык на основе текущего контента на странице
     setLanguage(lang) {
-        // Изменяем URL без перезагрузки страницы, используя верхний регистр
-        window.history.pushState({}, '', `/${lang.toUpperCase()}`);
-        
+        // Обновляем текст текущего языка
         document.getElementById('current-language').textContent = lang.toUpperCase();
-        
-        const elements = document.getElementsByClassName('lang');
-        Array.from(elements).forEach(element => {
-            const key = element.getAttribute('key');
-            if (key && arrLang[lang] && arrLang[lang][key]) {
-                element.textContent = arrLang[lang][key];
-            }
-        });
 
+        // Обновляем видимость языков в селекторе
         this.updateLanguageVisibility(lang);
     },
 
+    // Обновляем видимость языков в селекторе
     updateLanguageVisibility(currentLang) {
         const allLang = document.querySelectorAll('.hidden-lang');
         allLang.forEach(lang => {
+            // Прячем текущий выбранный язык
             if (lang.querySelector('.translate').textContent === currentLang.toUpperCase()) {
                 lang.style.display = 'none';
             } else {
@@ -33,68 +21,43 @@ const LanguageHandler = {
         });
     },
 
+    // Инициализация обработчиков
     init() {
-        const currentLang = this.getLanguageFromUrl();
-        this.setLanguage(currentLang);
+        // Получаем текущий язык из URL (например, из имени файла)
+        const currentLang = window.location.pathname.split('/').pop().split('.')[0].toUpperCase();
+        this.setLanguage(currentLang || 'EN'); // Если язык не указан, по умолчанию ставим 'EN'
 
-        // Обработчик изменения состояния истории браузера
-        window.addEventListener('popstate', () => {
-            const newLang = this.getLanguageFromUrl();
-            this.setLanguage(newLang);
-        });
-
+        // Обработчик открытия/закрытия селектора языка
         const languageSelector = document.getElementById('language-selector');
         languageSelector.addEventListener('click', (event) => {
             event.stopPropagation();
             languageSelector.classList.toggle('open');
-            
-            const currentLanguages = document.getElementById('current-language');
-            const allLang = document.querySelectorAll('.hidden-lang');
-            
-            allLang.forEach(lang => {
-                if (lang.querySelector('.translate').textContent === currentLanguages.textContent) {
-                    lang.style.display = 'none';
-                } else {
-                    lang.style.display = 'block';
-                }
-            });
         });
 
+        // Закрытие селектора при клике вне его
         document.addEventListener('click', () => {
             const languageSelector = document.getElementById('language-selector');
             languageSelector.classList.remove('open');
         });
 
+        // Обработчик кликов по кнопкам выбора языка
         document.querySelectorAll('.translate').forEach(button => {
             button.addEventListener('click', (event) => {
                 event.stopPropagation();
-                
-                const lang = button.getAttribute('id');
+
+                // Смена языка и переход на соответствующую страницу
+                const lang = button.querySelector('a').getAttribute('href').split('.')[0].toUpperCase();
                 this.setLanguage(lang);
-                
-                const currentLanguages = document.getElementById('current-language');
-                const languageSelector = document.getElementById('language-selector');
-                
-                currentLanguages.textContent = button.textContent;
-                languageSelector.classList.remove('open');
-                
-                const allLang = document.querySelectorAll('.hidden-lang');
-                allLang.forEach(lang => {
-                    if (lang.querySelector('.translate').textContent === currentLanguages.textContent) {
-                        lang.style.display = 'none';
-                    } else {
-                        lang.style.display = 'block';
-                    }
-                });
             });
         });
     }
 };
 
-// Инициализация после загрузки DOM
+// Инициализация обработчиков при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
     LanguageHandler.init();
 });
+
 
 
 function checkWindowSize() {
@@ -116,7 +79,7 @@ function checkWindowSize() {
 
 // Функция для открытия модального окна
 function openModal() {
-    const modal = document.getElementById('language-modal');
+    const modal = document.getElementById('modal');
     modal.style.display = 'flex';  // Показываем модальное окно
 }
 
@@ -124,7 +87,7 @@ function openModal() {
 const closeModalButton = document.getElementById('close-modal');
 if (closeModalButton) {
     closeModalButton.addEventListener('click', function() {
-        const modal = document.getElementById('language-modal');
+        const modal = document.getElementById('modal');
         modal.style.display = 'none';  // Закрываем модальное окно
     });
 }

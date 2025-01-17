@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Monolead Landing</title>
+        <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <img src="img/logo.png" alt>
+            </div>
+            <div class="points">
+                <nav>
+                    <span><a href="/UA" onclick="showSection('advantages', event)">Переваги</a></span>
+                    <span><a href="/UA" onclick="showSection('geo', event)">Geo</a></span>
+                    <span><a href="/UA" onclick="showSection('contact', event)">Контакти</a></span>
+                </nav>
+            </div>
+            <div class="right_header">
+                <div class="language-selector" id="language-selector">
+                    <img src="img/down.png" alt="Arrow" class="arrow">
+                    <div class="languages">
+                        <span class="language" id="current-language">UA</span>
+                        <span class="hidden-lang" data-lang="EN"><button
+                                class="translate"><a
+                                    href="EN.html">EN</a></button></span>
+                        <span class="hidden-lang" data-lang="UA"><button
+                                class="translate"><a
+                                    href="UA.html">UA</a></button></span>
+                    </div>
+                </div>
+                <div class="mobile-button">
+                    <button class="mobile-menu-button"><img src="img/menu.png"
+                            alt="Menu"></button>
+                </div>
+            </div>
+
+        </header>
+
+        <main>
+            <div class="box"></div>
+            <section class="under_header">
+                <div class="blocks_top">
+                    <div class="left_part">
+                        <div class="name">
+                            <p>MONOLEAD</p>
+                            <p class="lang" key="slogan">Якість, яка дає результат</p>
+                        </div>
+
+                        <button class="button_contact lang"
+                            key="but_top"><a
+                                href="https://t.me/Monolead_account">Зв’яжіться з нами</a></button>
+                    </div>
+
+                    <div class="right_part">
+                        <img src="img/ube.png" alt class="moving-image">
+                    </div>
+                </div>
+            </section>
+
+            <section class="blocks" id="advantages">
+                <div class="left_blocks">
+                    <div class="block_item">
+                        <img src="img/collections.png" alt>
+                        <div>
+                            <p class="lang" key="col_info">ПРОМО КРАЩОГО АВТОРА</p>
+                            <p class="lang" key="col_text">Тільки якісні і перевірені авторські промо з актуальними фото та свіжими історіями, що конвертять.</p>
+                        </div>
+                    </div>
+                    <div class="block_item">
+                        <img src="img/Dollar.png" alt>
+                        <div>
+                            <p class="lang" key="dol_info">ВИСОКА СТАВКА</p>
+                            <p class="lang" key="dol_text">Заробляй більше з меншими ризиками. Отримуй гарантований профіт.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="middle_blocks">
+                    <div class="block_item">
+                        <img src="img/support.png" alt>
+                        <div>
+                            <p class="lang" key="sup_info">ПІДТРИМКА 24/7</p>
+                            <p class="lang" key="sup_text">Оперативний сервіс з індивідуальними умовами для партнерів.</p>
+                        </div>
+                    </div>
+                    <div class="block_item">
+                        <img src="img/accept.png" alt>
+                        <div>
+                            <p class="lang" key="acc_info">ГАРАНТ НА ТЕСТОВИЙ ПРОЛИВ</p>
+                            <p class="lang" key="acc_text">Твій профіт не постраждає, навіть якщо ми не виконаємо домовленностей</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="right_block">
+                    <div class="block_item">
+                        <img src="img/list.png" alt>
+                        <div>
+                            <p class="lang" key="list_info">ОФЕРИ З МАКСИМАЛЬНИМ КОНВЕРТОМ</p>
+                            <p class="lang" key="list_text">Фокус виключно на топових оферах з найвищими ROI-показниками.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section class="photo_back"></section>
+
+            <section class="countries" id="geo">
+                <div class="back_photos">
+                    <img src="img/left_line.png" alt>
+                    <img src="img/right_line.png" alt>
+                    <img src="img/bottom_line.png" class="bottom_line">
+                </div>
+                <div class="table">
+                    <p class="table_title lang" key="table_title">Активні GEO з найбільшим прибутком</p>
+                    <div class="table_countries">
+                        <div class="left_table">
+                            <div class="table_item">
+                                <p class="lang" key="hu">Угорщина</p>
+                                <img src="img/hungary.png" alt>
+                            </div>
+                            <div class="table_item">
+                                <p class="lang" key="sk">Словаччина</p>
+                                <img src="img/slovakia.png" alt>
+                            </div>
+                        </div>
+                        <div class="middle_table">
+                            <div class="table_item">
+                                <p class="lang" key="ro">Румунія</p>
+                                <img src="img/romania.png" alt>
+                            </div>
+                            <div class="table_item">
+                                <p class="lang" key="pl">Польща</p>
+                                <img src="img/poland.png" alt>
+                            </div>
+                        </div>
+                        <div class="right_table">
+                            <div class="table_item">
+                                <p class="lang" key="cz">Чехія</p>
+                                <img src="img/czech.png" alt>
+                            </div>
+                            <div class="table_item">
+                                <p class="lang" key="soon">SOON...</p>
+                                <img src="img/soon.png" alt>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="contacts" id="contact">
+                <div class="contacts_top">
+                    <p class="lang" key="cont_title">Ми на зв'язку 24/7</p>
+                    <p class="lang" key="cont_text">Професійний саппорт та індивідуальна підтримка на кожному етапі взаємодії.</p>
+                </div>
+
+                <div class="buttons_bottom">
+                    <a href="https://t.me/Monolead_account">
+                        <button class="telegram-hover">
+                            <div class="telegram-background">
+                                <img src="img/telegram.png" alt
+                                    class="telegram">
+                            </div>
+                            <p>Telegram</p>
+                        </button></a>
+
+                    <a href="https://t.me/monolead_cpa">
+                        <button class="truncate-button">
+                            <img src="img/contact.png" alt>
+                            <p class="lang" key="butt_cont">Новини і анонси</p>
+                        </button>
+                    </a>
+
+                    <a href="mailto:account@monolead.biz">
+                        <button>
+                            <div class="email-background">
+                                <img src="img/email.png" alt class="email">
+                            </div>
+                            <p>Email</p>
+                        </button>
+                    </a>
+                    
+                </div>
+
+            </section>
+
+            <section class="modal" id="modal">
+                <div class="modal-content">
+                    <span id="close-modal" class="close">&times;</span>
+                    <div class="points1">
+                        <nav>
+                            <span><a href="#advantages">Advantages</a></span>
+                            <span><a href="#geo">Geo</a></span>
+                            <span><a href="#contact">Contacts</a></span>
+                        </nav>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="left_align">GET PROFIT FROM</div>
+            <div class="right_align">THE FIRST LEAD</div>
+        </footer>
+
+        
+
+        <script src="js/script.js"></script>
+        <script src="js/scroll.js"></script>
+    </body>
+</html>
