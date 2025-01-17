@@ -66,23 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
     LanguageHandler.init();
 });
 
-function checkWindowSize() {
-    const windowWidth = window.innerWidth;
-    const mobileButton = document.querySelector('.mobile-button');
-    
-    if (windowWidth <= 881) {
-        // Показываем кнопку для мобильных
-        if (mobileButton) {
-            mobileButton.style.display = 'block';
-        }
-    } else {
-        // Скрываем кнопку на больших экранах
-        if (mobileButton) {
-            mobileButton.style.display = 'none';
-        }
-    }
-}
-
 // Функция для открытия модального окна
 function openModal() {
     const modal = document.getElementById('modal');
@@ -106,9 +89,43 @@ if (mobileMenuButton) {
     });
 }
 
+// Функция для скрытия модального окна и скролла к секции
+function showSection(sectionId, event) {
+    event.preventDefault();  // Останавливаем переход по ссылке
+
+    // Закрываем модальное окно
+    const modal = document.getElementById('modal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+
+    // Скролл к секции
+    const section = document.getElementById(sectionId);
+    if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+// Проверка размера окна
+function checkWindowSize() {
+    const windowWidth = window.innerWidth;
+    const mobileButton = document.querySelector('.mobile-button');
+    
+    if (windowWidth <= 881) {
+        // Показываем кнопку для мобильных
+        if (mobileButton) {
+            mobileButton.style.display = 'block';
+        }
+    } else {
+        // Скрываем кнопку на больших экранах
+        if (mobileButton) {
+            mobileButton.style.display = 'none';
+        }
+    }
+}
+
 // Проверяем размер при загрузке страницы
 document.addEventListener('DOMContentLoaded', checkWindowSize);
 
 // Проверяем размер при изменении размера окна
 window.addEventListener('resize', checkWindowSize);
-

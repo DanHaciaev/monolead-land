@@ -8,12 +8,3 @@ window.onload = function() {
         history.replaceState({}, '', newPath);
     }
 }
-
-function showSection(sectionId, event) {
-    event.preventDefault();    
-    // Скролл к секции
-    const section = document.getElementById(sectionId);
-    if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
-    }
-}
