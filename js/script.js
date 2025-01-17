@@ -1,13 +1,14 @@
-// Основной объект для работы с языками
 const LanguageHandler = {
     // Получаем язык из URL
     getLanguageFromUrl() {
-        const hash = window.location.hash.substring(1);
-        return hash === 'ua' || hash === 'en' ? hash : 'en';
+        const path = window.location.pathname.substring(1).toLowerCase(); // Убираем начальный слэш и переводим в нижний регистр
+        return path === 'ua' || path === 'en' ? path : 'en';
     },
 
     setLanguage(lang) {
-        window.location.hash = lang;
+        // Изменяем URL без перезагрузки страницы, используя верхний регистр
+        window.history.pushState({}, '', `/${lang.toUpperCase()}`);
+        
         document.getElementById('current-language').textContent = lang.toUpperCase();
         
         const elements = document.getElementsByClassName('lang');
@@ -36,8 +37,8 @@ const LanguageHandler = {
         const currentLang = this.getLanguageFromUrl();
         this.setLanguage(currentLang);
 
-        // Обработчик изменения хэша в URL
-        window.addEventListener('hashchange', () => {
+        // Обработчик изменения состояния истории браузера
+        window.addEventListener('popstate', () => {
             const newLang = this.getLanguageFromUrl();
             this.setLanguage(newLang);
         });
