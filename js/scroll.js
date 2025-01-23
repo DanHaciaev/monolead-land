@@ -34,21 +34,22 @@ const LanguageHandler = {
 
     // Инициализация обработчиков
     init() {
-        // Normalize language code to uppercase
+        // Get the path segments
         const path = window.location.pathname.split('/');
+        
+        // Find the language segment (last folder before the filename)
         const detectedLang = path[path.length - 2].toUpperCase();
     
         // Mapping to ensure consistent language code
         const languageMap = {
             'EN': 'EN',
             'UA': 'UA'
-            // Add more languages as needed
         };
     
-        // Set language, defaulting to 'EN' if not found
+        // Normalize language, default to 'EN'
         const normalizedLang = languageMap[detectedLang] || 'EN';
     
-        // Redirect if the URL doesn't match the normalized language
+        // Redirect if URL doesn't match normalized language
         if (detectedLang !== normalizedLang) {
             const newPath = window.location.pathname.replace(
                 `/${path[path.length - 2]}/`, 
@@ -57,7 +58,7 @@ const LanguageHandler = {
             window.location.replace(newPath);
         }
     
-        // Set the language (removed the duplicate call)
+        // Set the language
         this.setLanguage(normalizedLang);
 
         // Обработчик открытия/закрытия селектора языка
