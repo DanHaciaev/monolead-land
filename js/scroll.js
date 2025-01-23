@@ -34,12 +34,31 @@ const LanguageHandler = {
 
     // Инициализация обработчиков
     init() {
-        // Получаем текущий язык из URL (например, из имени файла)
+        // Normalize language code to uppercase
         const path = window.location.pathname.split('/');
-        const currentLang = path[path.length - 2]; // Это будет язык (например, 'EN' или 'UA')
-
-        // Устанавливаем язык (по умолчанию 'EN' если не найден)
-        this.setLanguage(currentLang || 'EN');
+        const detectedLang = path[path.length - 2].toUpperCase();
+    
+        // Mapping to ensure consistent language code
+        const languageMap = {
+            'EN': 'EN',
+            'UA': 'UA'
+            // Add more languages as needed
+        };
+    
+        // Set language, defaulting to 'EN' if not found
+        const normalizedLang = languageMap[detectedLang] || 'EN';
+    
+        // Redirect if the URL doesn't match the normalized language
+        if (detectedLang !== normalizedLang) {
+            const newPath = window.location.pathname.replace(
+                `/${path[path.length - 2]}/`, 
+                `/${normalizedLang}/`
+            );
+            window.location.replace(newPath);
+        }
+    
+        // Set the language (removed the duplicate call)
+        this.setLanguage(normalizedLang);
 
         // Обработчик открытия/закрытия селектора языка
         const languageSelector = document.getElementById('language-selector');
