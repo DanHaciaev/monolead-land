@@ -1,0 +1,25 @@
+RewriteEngine On
+RewriteCond %{REQUEST_URI} ^/en/?$ [NC]
+RewriteRule ^en/?$ /EN/ [L,R=301]
+
+RewriteCond %{REQUEST_URI} ^/en/ [NC]
+RewriteRule ^en/(.*)$ /EN/$1 [L,R=301]
+
+RewriteCond %{REQUEST_URI} ^/EN/?$ [NC]
+RewriteRule ^EN/?$ /EN/ [L,R=301]
+
+RewriteCond %{REQUEST_URI} ^/EN/ [NC]
+RewriteRule ^EN/(.*)$ /EN/$1 [L,R=301]
+
+# Similar rules for UA if needed
+RewriteCond %{REQUEST_URI} ^/ua/?$ [NC]
+RewriteRule ^ua/?$ /UA/ [L,R=301]
+
+RewriteCond %{REQUEST_URI} ^/ua/ [NC]
+RewriteRule ^ua/(.*)$ /UA/$1 [L,R=301]
+
+RewriteCond %{REQUEST_URI} ^/UA/?$ [NC]
+RewriteRule ^UA/?$ /UA/ [L,R=301]
+
+RewriteCond %{REQUEST_URI} ^/UA/ [NC]
+RewriteRule ^UA/(.*)$ /UA/$1 [L,R=301]
